@@ -1,6 +1,14 @@
-def hi(name):
-    print('Hey, '+name)
+import os
+import sys
 
-girls = ['youngseo', 'youngchan', 'taesook']
-for name in girls:
-    hi(name)
+path = '/home/<your-username>/my-first-blog'  # 여러분의 유저네임을 여기에 적어주세요.
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
+
+from django.core.wsgi import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
+application = DjangoWhiteNoise(get_wsgi_application())
+
+# https://github.com/choruspapa/my-first-blog.git
